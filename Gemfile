@@ -9,6 +9,7 @@ gem 'mysql2', '~> 0.2.11'
 
 gem 'execjs'
 gem 'therubyracer'
+gem 'haml'
 
 # Use unicorn as the web server
 # gem 'unicorn'
