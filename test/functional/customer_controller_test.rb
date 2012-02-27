@@ -33,4 +33,31 @@ class CustomerControllerTest < ActionController::TestCase
     assert_routing "/customer/1", {:controller => "customer", :action => "show", :id => "1"}
   end
 
+  #View Testing
+  test "it can find an element" do
+    get :index
+    assert_select '#intro', 'HELLO'
+  end
+
+  test "it can find a nested element" do
+    get :index
+    assert_select '#second_area #nested_area', 'This is some more information'
+  end
+
+  test "it can find other nested elements" do
+    get :index
+    assert_select '#second_area' do
+      assert_select '#nested_area', 'This is some more information'
+    end
+  end
+
+  test "it can find multiple elements" do
+    get :index
+    assert_select '#list_of_things' do |elements|
+      elements.each do |el|
+        assert_select el, '#nested', 'Has Some Text'
+      end
+    end
+  end
+
 end
